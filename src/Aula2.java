@@ -3,26 +3,31 @@ import java.util.Scanner;
 public class Aula2 {
 
     public static int[] EscolherFruta() {
+
         System.out.println("\nOpções de Fruta:");
         System.out.println("1- Pera\n2- Laranja\n3- Maçã\n4- Tomate\n5- Caqui\n");
 
-        int[] escolha = new int[2];
-        System.out.println("Qual fruta você deseja? (Digite o número)");
-        Scanner scanner = new Scanner(System.in);
-        escolha[0] = scanner.nextInt();
+        Utils utils = new Utils();
+        String msg = "";
 
-        System.out.println("Quantidade: ");
-        escolha[1] = scanner.nextInt();
+        int[] escolha = new int[2];
+
+        msg = "Qual fruta você deseja? (Digite o número)";
+        escolha[0] = utils.lerInt(msg);
+
+        msg = "Quantidade: ";
+        escolha[1] = utils.lerInt(msg);
 
         return escolha;
     }
 
     public static boolean comprarMais() {
 
-        Scanner scanner = new Scanner(System.in);
+        Utils utils = new Utils();
+        String msg = "";
 
-        System.out.println("Deseja comprar mais frutas? (S/N)");
-        String choice = scanner.next();
+        msg = "Deseja comprar mais frutas? (S/N)";
+        String choice = utils.lerString(msg);
 
         if (choice.equals("S")) {
             return true;
