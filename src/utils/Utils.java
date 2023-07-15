@@ -1,8 +1,10 @@
+package utils;
+
 import java.util.Scanner;
 
 public class Utils {
 
-    public String lerString(String msg) {
+    public static String lerString(String msg) {
 
         Scanner scanner = new Scanner(System.in);
 
@@ -12,7 +14,7 @@ public class Utils {
         return result;
     }
 
-    public int lerInt(String msg) {
+    public static int lerInt(String msg) {
 
         Scanner scanner = new Scanner(System.in);
 

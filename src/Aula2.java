@@ -1,4 +1,4 @@
-import java.util.Scanner;
+import static utils.Utils.*;
 
 public class Aula2 {
 
@@ -7,27 +7,25 @@ public class Aula2 {
         System.out.println("\nOpções de Fruta:");
         System.out.println("1- Pera\n2- Laranja\n3- Maçã\n4- Tomate\n5- Caqui\n");
 
-        Utils utils = new Utils();
         String msg = "";
 
         int[] escolha = new int[2];
 
         msg = "Qual fruta você deseja? (Digite o número)";
-        escolha[0] = utils.lerInt(msg);
+        escolha[0] = lerInt(msg);
 
         msg = "Quantidade: ";
-        escolha[1] = utils.lerInt(msg);
+        escolha[1] = lerInt(msg);
 
         return escolha;
     }
 
     public static boolean comprarMais() {
 
-        Utils utils = new Utils();
         String msg = "";
 
         msg = "Deseja comprar mais frutas? (S/N)";
-        String choice = utils.lerString(msg);
+        String choice = lerString(msg);
 
         if (choice.equals("S")) {
             return true;
