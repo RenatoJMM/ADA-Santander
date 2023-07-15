@@ -38,21 +38,21 @@ public class Aula2 {
     public static void main(String[] args) {
 
         boolean continuar = true;
-        double valorFinal = 0;
+        double resultadoFinal = 0;
 
         while (continuar) {
             int[] escolha = EscolherFruta();
 
             if (escolha[1] >= 10) {
-                valorFinal += escolha[1] * 1.25;
+                resultadoFinal += escolha[1] * 1.25;
             } else {
-                valorFinal += escolha[1] * 1.45;
+                resultadoFinal += escolha[1] * 1.45;
             }
 
             continuar = comprarMais();
         }
 
-        System.out.printf("Valor final a pagar: %.2f", valorFinal);
+        System.out.printf("Valor final a pagar: %.2f", resultadoFinal);
 
     }
 

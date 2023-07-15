@@ -9,9 +9,9 @@ public class Utils {
         Scanner scanner = new Scanner(System.in);
 
         System.out.println(msg);
-        String result = scanner.nextLine();
+        String resultado = scanner.nextLine();
 
-        return result;
+        return resultado;
     }
 
     public static int lerInt(String msg) {
@@ -19,9 +19,9 @@ public class Utils {
         Scanner scanner = new Scanner(System.in);
 
         System.out.println(msg);
-        int result = scanner.nextInt();
+        int resultado = scanner.nextInt();
 
-        return result;
+        return resultado;
     }
 
 }
