@@ -6,6 +6,8 @@ public class Exercicio3 {
         int[] numbers = { 10, 15, 1, 25, 3 };
         int[] ascendingOrder = sortAscendingOrder(numbers);
         int[] descendingOrder = sortDescendingOrder(numbers);
+        // int[] pares = retornaPares(numbers);
+        // int[] impares = retornaImpares(numbers);
 
         System.out.println(Arrays.toString(numbers));
         System.out.println(Arrays.toString(ascendingOrder));
@@ -58,5 +60,12 @@ public class Exercicio3 {
 
         return listaOrdenada;
     }
+
+    // public static int[] retornaPares(int[] lista) {
+
+    // int[] result = new int[lista.length()];
+
+    // return result;
+    // }
 
 }
