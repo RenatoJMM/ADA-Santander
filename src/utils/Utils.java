@@ -24,4 +24,14 @@ public class Utils {
         return resultado;
     }
 
+    public static double lerDouble(String msg) {
+
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println(msg);
+        double resultado = scanner.nextDouble();
+
+        return resultado;
+    }
+
 }

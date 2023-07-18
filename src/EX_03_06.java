@@ -1,6 +1,11 @@
+import static utils.Utils.*;
+
 public class EX_03_06 {
 
     public static double calcularArea(double[] lados) {
+
+        verificarTriangulo(lados);
+
         double area = 0;
         double sum = 0;
 
@@ -21,12 +26,10 @@ public class EX_03_06 {
         double sum = 0;
 
         for (int i = 0; i < lados.length; i++) {
-
             if (maior < lados[i]) {
                 maior = lados[i];
                 indice = i;
             }
-
         }
 
         for (int i = 0; i < lados.length; i++) {
@@ -43,11 +46,31 @@ public class EX_03_06 {
 
     }
 
+    public static double[] digitarLados() {
+        String[] ordem = { "primeiro", "segundo", "terceiro" };
+        double[] lados = new double[3];
+
+        for (int i = 0; i < ordem.length; i++) {
+            try {
+                String msg = "Digite o " + ordem[i] + " lado:";
+                lados[i] = lerDouble(msg);
+            } catch (Exception e) {
+                System.out.println("Digite um valor válido!");
+                i--;
+            }
+
+        }
+
+        return lados;
+
+    }
+
     public static void main(String[] args) {
 
-        // VALOR EM CENTIMÉTROS
-        double[] lados = { 5, 3, 9 };
-        verificarTriangulo(lados);
+        double[] lados = new double[3];
+
+        lados = digitarLados();
+
         double area = calcularArea(lados);
         System.out.printf("Área: %.2f cm²", area);
 
