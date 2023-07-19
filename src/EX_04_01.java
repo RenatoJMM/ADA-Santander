@@ -1,9 +1,13 @@
 import java.text.DecimalFormat;
 import java.util.Arrays;
+import java.util.Locale;
 
 public class EX_04_01 {
 
     public static void main(String[] args) {
+
+        // Locale.setDefault(new Locale("en", "US")); IF THE PC IS IN PT-BR
+
         double[][] entradas = { { 100000.00, 12000.00, 20000.00 }, { 115500.00, 25000.00, 32500.00 },
                 { 121000.0, 14350.0, 21450.0 }, { 238500.0, 18350.0, 32450.0 }, { 53000.0, 2350.0, 8450.0 },
                 { 1250000.0, 124550.0, 225450.0 }, { 145000.0, 12550.0, 22450.0 }, { 173000.0, 12450.0, 22540.0 },
