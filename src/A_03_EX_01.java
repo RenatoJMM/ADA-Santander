@@ -1,6 +1,6 @@
 import java.math.BigDecimal;
 
-public class EX_03_01 {
+public class A_03_EX_01 {
 
     public static double custoCompra(double input) {
 
