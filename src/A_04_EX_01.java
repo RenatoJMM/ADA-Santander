@@ -2,7 +2,7 @@ import java.text.DecimalFormat;
 import java.util.Arrays;
 import java.util.Locale;
 
-public class EX_04_01 {
+public class A_04_EX_01 {
 
     public static void main(String[] args) {
 

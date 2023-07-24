@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class Main {
+public class A_01_EX_01 {
 
     public static void mostrarTexto(String texto) {
         System.out.println(texto);

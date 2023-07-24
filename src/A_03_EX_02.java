@@ -1,4 +1,4 @@
-public class EX_03_02 {
+public class A_03_EX_02 {
 
     public static double[] custosCarro(double[] input) {
 

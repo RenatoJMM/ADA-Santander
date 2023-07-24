@@ -1,6 +1,6 @@
 import static utils.Utils.*;
 
-public class EX_03_06 {
+public class A_03_EX_06 {
 
     public static double calcularArea(double[] lados) {
 

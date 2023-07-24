@@ -1,4 +1,4 @@
-public class EX_03_03 {
+public class A_03_EX_03 {
 
     public static double calculoSalario(double[] input) {
         double salario = 0;

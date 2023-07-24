@@ -1,4 +1,4 @@
-public class EX_03_04 {
+public class A_03_EX_04 {
 
     public static int primeiroCaractereUnico(String input) {
         input = input.toUpperCase();

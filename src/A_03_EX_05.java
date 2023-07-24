@@ -1,4 +1,4 @@
-public class EX_03_05 {
+public class A_03_EX_05 {
 
     public static boolean elementosRepetidos(double[] input) {
 

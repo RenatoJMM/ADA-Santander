@@ -1,13 +1,13 @@
 import java.util.Arrays;
 
-public class Exercicio3 {
+public class A_02_EX_02 {
 
     public static void main(String[] args) {
         int[] numbers = { 10, 15, 1, 25, 3 };
         int[] ascendingOrder = sortAscendingOrder(numbers);
         int[] descendingOrder = sortDescendingOrder(numbers);
-        // int[] pares = retornaPares(numbers);
-        // int[] impares = retornaImpares(numbers);
+        int[] pares = retornaPares(numbers);
+        int[] impares = retornaImpares(numbers);
 
         System.out.println(Arrays.toString(numbers));
         System.out.println(Arrays.toString(ascendingOrder));
@@ -61,11 +61,52 @@ public class Exercicio3 {
         return listaOrdenada;
     }
 
-    // public static int[] retornaPares(int[] lista) {
+    public static int[] retornaPares(int[] lista) {
 
-    // int[] result = new int[lista.length()];
+        int count = 0;
 
-    // return result;
-    // }
+        for (int i = 0; i < lista.length; i++) {
+
+            if (lista[i] % 2 == 0) {
+                count += 1;
+            }
+
+        }
+
+        int[] result = new int[count];
+
+        for (int i = 0; i < lista.length; i++) {
+
+            if (lista[i] % 2 == 0) {
+                result += lista[i];
+            }
+        }
+
+        return result;
+    }
+
+    public static int[] retornaImpares(int[] lista) {
+
+        int count = 0;
+
+        for (int i = 0; i < lista.length; i++) {
+
+            if (lista[i] % 2 != 0) {
+                count += 1;
+            }
+
+        }
+
+        int[] result = new int[count];
+
+        for (int i = 0; i < lista.length; i++) {
+
+            if (lista[i] % 2 != 0) {
+                result[i] = lista[i];
+            }
+        }
+
+        return result;
+    }
 
 }
