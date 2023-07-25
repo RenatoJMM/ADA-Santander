@@ -8,6 +8,9 @@ public class Enums_Explanation {
         System.out.println(diaDaSemanana2(Semana.SABADO));
         System.out.println(Semana.TERCA_FEIRA.getName());
 
+        Semana diaSemana = Semana.valueOf("SABADO");
+        System.out.println(diaSemana.getName());
+
     }
 
     public static int diaDaSemanana(String dia) {

@@ -16,9 +16,9 @@ public class A_05_EX_01 {
         } else if (input > 0 && input <= 10) {
             valorFinal = input * 1.45;
         } else if (input == 0) {
-            throw new CompraInvalida("Não é possível realizar pedido com zero items!");
+            throw new CompraInvalidaException("Não é possível realizar pedido com zero items!");
         } else if (input < 0) {
-            throw new CompraInvalida("Quantidade Fornecida inválida (Negativa)!!");
+            throw new CompraInvalidaException("Quantidade Fornecida inválida (Negativa)!!");
         }
 
         return valorFinal;
