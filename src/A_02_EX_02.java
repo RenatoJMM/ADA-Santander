@@ -77,9 +77,9 @@ public class A_02_EX_02 {
 
         for (int i = 0; i < lista.length; i++) {
 
-            if (lista[i] % 2 == 0) {
-                result += lista[i];
-            }
+            // if (lista[i] % 2 == 0) {
+            // result += lista[i];
+            // }
         }
 
         return result;
