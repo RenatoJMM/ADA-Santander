@@ -1,15 +1,20 @@
+import java.util.Arrays;
+
 public enum Semana_Enums {
-    DOMINGO("domingo"), SEGUNDA_FEIRA("segunda-feira"), TERCA_FEIRA("terça-feira"), QUARTA_FEIRA("quarta-feira"),
-    QUINTA_FEIRA("quinta-feira"), SEXTA_FEIRA("sexta-feira"), SABADO("sábado");
+    DOMINGO(new String[] { "domingo", "d", "dm" }), SEGUNDA_FEIRA(new String[] { "segunda-feira", "seg", "segunda" }),
+    TERCA_FEIRA(new String[] { "terça-feira", "ter", "terça" }),
+    QUARTA_FEIRA(new String[] { "quarta-feira", "quar", "quarta" }),
+    QUINTA_FEIRA(new String[] { "quinta-feira", "quinta", "quin" }),
+    SEXTA_FEIRA(new String[] { "sexta-feira", "sex", "sexta" }), SABADO(new String[] { "sábado", "sabado", "sab" });
 
-    final String name;
+    final String[] keywords;
 
-    private Semana_Enums(String name) {
-        this.name = name;
+    Semana_Enums(String[] keywords) {
+        this.keywords = keywords;
     }
 
-    public String getName() {
-        return name;
+    public String[] getKeys() {
+        return this.keywords;
     }
 
     public static Semana_Enums fromString(String diaEscrito) throws DiaInvalidoException {
@@ -17,12 +22,15 @@ public enum Semana_Enums {
         Semana_Enums[] diaVar = Semana_Enums.values();
 
         for (Semana_Enums var : diaVar) {
-            if (var.getName() == diaEscrito) {
-                return var;
+            for (String key : var.getKeys()) {
+                if (key.equalsIgnoreCase(diaEscrito)) {
+                    return var;
+                }
             }
+
         }
 
-        throw new DiaInvalidoException("Erro ao criar o dia: " + diaEscrito);
+        throw new DiaInvalidoException("Erro ao criar o dia!");
 
     }
 
