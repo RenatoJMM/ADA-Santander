@@ -5,10 +5,10 @@ public class Enums_Explanation {
         // OPENFINANCE ENUMS PRATICAR
 
         System.out.println(diaDaSemanana("Sabado"));
-        System.out.println(diaDaSemanana2(Semana.SABADO));
-        System.out.println(Semana.TERCA_FEIRA.getName());
+        System.out.println(diaDaSemanana2(Semana_Enums.SABADO));
+        System.out.println(Semana_Enums.TERCA_FEIRA.getName());
 
-        Semana diaSemana = Semana.valueOf("SABADO");
+        Semana_Enums diaSemana = Semana_Enums.valueOf("SABADO");
         System.out.println(diaSemana.getName());
 
     }
@@ -36,7 +36,7 @@ public class Enums_Explanation {
 
     }
 
-    public static int diaDaSemanana2(Semana dia) {
+    public static int diaDaSemanana2(Semana_Enums dia) {
         return dia.ordinal();
     }
 
