@@ -19,7 +19,7 @@ public class A_06_EX_02 {
 
         System.out.println(estado);
 
-        double valorFinal = valorProduto * (1.0 + estado.getTax());
+        double valorFinal = valorProduto * (1.00 + estado.getTax());
         valorFinal = arredondar(valorFinal);
 
         return valorFinal;

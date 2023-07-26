@@ -28,7 +28,7 @@ public class Enums_Explanation {
             return 5;
         } else if (dia.equals("Segunda")) {
             return 1;
-        } else if (dia.equals("Sabado")) {
+        } else if (dia.equals("Sábado")) {
             return 6;
         }
 

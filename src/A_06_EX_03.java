@@ -6,7 +6,7 @@ public class A_06_EX_03 {
             Semana_Enums dia = Semana_Enums.fromString("terça-feira");
             System.out.println("Criado com sucesso! (" + dia + ")");
         } catch (DiaInvalidoException e) {
-            throw new DiaInvalidoException("Erro!");
+            throw new DiaInvalidoException("Erro ao criar o dia!");
         }
 
     }

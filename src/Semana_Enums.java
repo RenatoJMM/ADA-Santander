@@ -22,7 +22,7 @@ public enum Semana_Enums {
             }
         }
 
-        throw new DiaInvalidoException("Erro ao criar dia: " + diaEscrito);
+        throw new DiaInvalidoException("Erro ao criar o dia: " + diaEscrito);
 
     }
 
