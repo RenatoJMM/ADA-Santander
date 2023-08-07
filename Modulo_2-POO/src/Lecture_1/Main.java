@@ -1,4 +1,4 @@
-package Aula1;
+package Lecture_1;
 
 public class Main {
     // public ->
