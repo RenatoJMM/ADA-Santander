@@ -1,6 +1,4 @@
-package Class_3;
-
-import java.math.BigDecimal;
+package Lecture_3;
 
 public class A_03_EX_01 {
 

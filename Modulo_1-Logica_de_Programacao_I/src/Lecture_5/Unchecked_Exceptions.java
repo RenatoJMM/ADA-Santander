@@ -1,4 +1,5 @@
-package Class_5;
+package Lecture_5;
+
 public class Unchecked_Exceptions {
 
     public static void main(String[] args) {

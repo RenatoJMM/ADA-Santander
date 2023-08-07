@@ -1,4 +1,4 @@
-package Class_7;
+package Lecture_7;
 
 public class A_07_EX_02 {
 

@@ -1,4 +1,4 @@
-package Class_6;
+package Lecture_6;
 
 public enum Estado {
     MG("MG", 0.07), SP("SP", 0.12), RJ("RJ", 0.15);

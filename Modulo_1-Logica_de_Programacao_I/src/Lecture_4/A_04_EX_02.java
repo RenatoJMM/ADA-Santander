@@ -1,4 +1,4 @@
-package Class_4;
+package Lecture_4;
 
 import java.text.DecimalFormat;
 

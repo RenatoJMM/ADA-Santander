@@ -1,4 +1,4 @@
-package Class_7;
+package Lecture_7;
 
 import Class_6.DiaInvalidoException;
 import Class_6.Semana_Enums;

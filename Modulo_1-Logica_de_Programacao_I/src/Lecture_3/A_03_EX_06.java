@@ -1,4 +1,4 @@
-package Class_3;
+package Lecture_3;
 
 import static utils.Utils.*;
 
