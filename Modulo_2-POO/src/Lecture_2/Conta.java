@@ -4,9 +4,9 @@ import java.math.BigDecimal;
 
 public class Conta {
 
-    Cliente cliente;
-    BigDecimal saldo = new BigDecimal("0");
-    String numeroConta;
+    private Cliente cliente;
+    private BigDecimal saldo = new BigDecimal("0");
+    private String numeroConta;
 
     public Conta(Cliente cliente, String numeroDaConta) {
         this.cliente = cliente;
@@ -14,7 +14,6 @@ public class Conta {
     }
 
     public Conta() {
-
     }
 
     public String depositar(BigDecimal valor) {
@@ -46,6 +45,30 @@ public class Conta {
     public String toString() {
         return "Conta do cliente: " + this.cliente.nome + ".\nNúmero da Conta:" + this.numeroConta + ".\nSaldo: R$ "
                 + saldo;
+    }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
+
+    public BigDecimal getSaldo() {
+        return saldo;
+    }
+
+    public void setSaldo(BigDecimal saldo) {
+        this.saldo = saldo;
+    }
+
+    public String getNumeroConta() {
+        return numeroConta;
+    }
+
+    public void setNumeroConta(String numeroConta) {
+        this.numeroConta = numeroConta;
     }
 
 }

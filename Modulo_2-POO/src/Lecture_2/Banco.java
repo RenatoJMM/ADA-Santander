@@ -5,7 +5,7 @@ import java.math.BigDecimal;
 
 public class Banco {
 
-    static ArrayList<Conta> listaDeContas;
+    private static List<Conta> listaDeContas;
 
     public Banco() {
         listaDeContas = new ArrayList<Conta>();
@@ -37,6 +37,10 @@ public class Banco {
 
     public String sacar(Conta conta, BigDecimal valor) {
         return conta.sacar(valor);
+    }
+
+    public List<Conta> getListaConta() {
+        return listaDeContas;
     }
 
 }
