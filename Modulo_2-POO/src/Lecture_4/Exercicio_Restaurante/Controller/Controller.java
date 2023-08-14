@@ -154,6 +154,8 @@ public class Controller {
                 clientePedido = clienteService.buscarCliente(cpfPedido);
             }
 
+            System.out.println("\nCliente encontrado:\n->" + clientePedido.toString());
+
             System.out.println("\nEscolha um dos restaurantes abaixo para realizar o Pedido: ");
 
             exibirRestaurantes();
@@ -169,6 +171,7 @@ public class Controller {
             String opcaoEntrega = scanner.nextLine();
 
             String enderecoPedido;
+
             if (opcaoEntrega.equalsIgnoreCase("S")) {
                 enderecoPedido = clientePedido.getEnderecoPadrao();
             } else {
@@ -181,12 +184,10 @@ public class Controller {
             clienteService.addPedido(clientePedido, pedido);
             restauranteService.addPedido(restaurantePedido, pedido);
 
-            System.out.println(pedido);
-
             adicionarPrato(restaurantePedido, pedido);
 
             System.out.println("----- Resumo do Pedido -----");
-            pedido.toString();
+            System.out.println("->" + pedido.toString());
 
         }
 
@@ -243,11 +244,9 @@ public class Controller {
         while (true) {
             exibirCardapio(restaurante);
 
-            scanner.nextLine();
-
-            System.out.println("Qual prato você deseja adicionar?");
+            System.out.println("\nQual prato você deseja adicionar?");
             int opcaoPrato = scanner.nextInt();
-            Prato pratoAdd = pratoService.buscarPrato(opcaoPrato);
+            Prato pratoAdd = restaurante.getPratos().get(opcaoPrato - 1);
 
             if (pratoAdd.equals(null)) {
                 continue;

@@ -19,14 +19,15 @@ public class Pedido {
 
     @Override
     public String toString() {
-        String descreverPedido = "Pedido feito no Restaurante: " + this.restaurante + ".\n   Pedido do cliente: "
-                + this.cliente + ".\n   Entrega no endereço: " + this.endereco + ".\n   Pratos do pedido:";
+        String descreverPedido = "Pedido feito no Restaurante: " + this.restaurante.getNome()
+                + ".\n  Pedido do cliente: " + this.cliente.getNome() + ".\n  Entrega no endereço: " + this.endereco
+                + ".\n  Pratos do pedido:";
 
         if (pratos.isEmpty()) {
-            descreverPedido += "\nNenhum prato adicionado!";
+            descreverPedido += "\n  Nenhum prato adicionado!";
         } else {
             for (int i = 0; i < pratos.size(); i++) {
-                descreverPedido += "\n" + (i + 1) + "-" + pratos.get(i).toString();
+                descreverPedido += "\n   " + (i + 1) + "-" + pratos.get(i).toString();
             }
         }
 
