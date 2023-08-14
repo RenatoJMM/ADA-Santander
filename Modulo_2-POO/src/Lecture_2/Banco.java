@@ -2,6 +2,7 @@ package Lecture_2;
 
 import java.util.ArrayList;
 import java.math.BigDecimal;
+import java.util.List;
 
 public class Banco {
 
@@ -24,7 +25,7 @@ public class Banco {
 
     public Conta buscarConta(String numeroConta) {
         for (int i = 0; i < listaDeContas.size(); i++) {
-            if (numeroConta.equals(listaDeContas.get(i).numeroConta)) {
+            if (numeroConta.equals(listaDeContas.get(i).getNumeroConta())) {
                 return listaDeContas.get(i);
             }
         }

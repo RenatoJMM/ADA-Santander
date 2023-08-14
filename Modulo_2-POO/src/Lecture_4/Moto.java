@@ -1,3 +1,5 @@
+package Lecture_4;
+
 public class Moto extends Veiculo {
 
     private int cilindradas;

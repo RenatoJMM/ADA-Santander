@@ -1,3 +1,5 @@
+package Lecture_4;
+
 public abstract class Veiculo { // O ABSTRACT QUER DIZER Q N PODE INSTANCIAR ESTA CLASSE, APENAS HERDA-LA
 
     private String placa;

@@ -43,8 +43,8 @@ public class Conta {
 
     @Override
     public String toString() {
-        return "Conta do cliente: " + this.cliente.nome + ".\nNúmero da Conta:" + this.numeroConta + ".\nSaldo: R$ "
-                + saldo;
+        return "Conta do cliente: " + this.cliente.getNome() + ".\nNúmero da Conta:" + this.numeroConta
+                + ".\nSaldo: R$ " + saldo;
     }
 
     public Cliente getCliente() {
