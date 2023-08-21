@@ -32,7 +32,7 @@ public class Controller {
             System.out.println("2- Criar Prato.");
             System.out.println("3- Criar Cliente.");
             System.out.println("4- Fazer Pedido.");
-            System.out.println("5- Exibir todos os Restaurantes.");
+            System.out.println("5- Exibir todos os Restaurantes, e ver cardápio.");
             System.out.println("6- Exibir Clientes.");
             System.out.println("7- Sair.");
             System.out.println("\nDigite a opção desejada:");
@@ -196,7 +196,8 @@ public class Controller {
     public void alternativasRestaurantes() {
         exibirRestaurantes();
         System.out.println("\n1- Escolher um Restaurante para adicionar pratos.");
-        System.out.println("2- Voltar");
+        System.out.println("2- Escolher um Restaurante para ver pedidos.");
+        System.out.println("3- Voltar");
         System.out.println("\nDigite a opção desejada:");
         int opcaoRestaurante = scanner.nextInt();
 
@@ -209,6 +210,14 @@ public class Controller {
             exibirCardapio(restEscolhido);
             System.out.println();
             adicionarPrato(restEscolhido);
+
+        } else if (opcaoRestaurante == 2) {
+            System.out.println("Digite o número do Restaurante desejado:");
+            int escolhaRestaurante = scanner.nextInt();
+
+            Restaurante restEscolhido = restauranteService.buscarRestaurante(escolhaRestaurante);
+
+            exibirPedidosRestaurante(restEscolhido);
 
         }
     }
@@ -244,22 +253,27 @@ public class Controller {
         while (true) {
             exibirCardapio(restaurante);
 
-            System.out.println("\nQual prato você deseja adicionar?");
-            int opcaoPrato = scanner.nextInt();
-            Prato pratoAdd = restaurante.getPratos().get(opcaoPrato - 1);
+            if (restaurante.getPratos().isEmpty()) {
+                System.out.println("Restaurante sem cardápio. Escolha outro restaurante!");
+            } else {
 
-            if (pratoAdd.equals(null)) {
-                continue;
-            }
+                System.out.println("\nQual prato você deseja adicionar?");
+                int opcaoPrato = scanner.nextInt();
+                Prato pratoAdd = restaurante.getPratos().get(opcaoPrato - 1);
 
-            pedidoService.addPrato(pedido, pratoAdd);
+                if (pratoAdd.equals(null)) {
+                    continue;
+                }
 
-            scanner.nextLine();
+                pedidoService.addPrato(pedido, pratoAdd);
 
-            System.out.println("Deseja adicionar mais algum prato? (S/N)");
-            String continuarAdd = scanner.nextLine();
-            if (continuarAdd.equalsIgnoreCase("N")) {
-                break;
+                scanner.nextLine();
+
+                System.out.println("Deseja adicionar mais algum prato? (S/N)");
+                String continuarAdd = scanner.nextLine();
+                if (continuarAdd.equalsIgnoreCase("N")) {
+                    break;
+                }
             }
         }
 
@@ -285,6 +299,11 @@ public class Controller {
     public void exibirCardapio(Restaurante restaurante) {
         System.out.println("\nInformações sobre o Restaurante:");
         System.out.print("->" + restaurante.toString());
+    }
+
+    public void exibirPedidosRestaurante(Restaurante restaurante) {
+        System.out.printf("\nPedidos anteriores do Restaurante %s:", restaurante.getNome());
+        System.out.print("\n->" + restaurante.listarPedidos());
     }
 
 }

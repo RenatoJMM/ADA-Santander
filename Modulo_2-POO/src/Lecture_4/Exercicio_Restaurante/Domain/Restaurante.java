@@ -40,6 +40,20 @@ public class Restaurante {
         return retorno;
     }
 
+    public String listarPedidos() {
+        String retorno = "Pedidos cadastrados:";
+
+        if (pedidos.isEmpty()) {
+            retorno += "\n   Nenhum pedido Realizado!";
+        } else {
+            for (int i = 0; i < pedidos.size(); i++) {
+                retorno += "\n   " + pedidos.get(i).toString();
+            }
+        }
+
+        return retorno;
+    }
+
     public String getNome() {
         return nome;
     }
