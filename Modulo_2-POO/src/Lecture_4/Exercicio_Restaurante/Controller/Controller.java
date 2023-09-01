@@ -2,8 +2,6 @@ package Lecture_4.Exercicio_Restaurante.Controller;
 
 import java.util.Scanner;
 
-import javax.naming.spi.DirStateFactory.Result;
-
 import Lecture_4.Exercicio_Restaurante.Domain.*;
 import Lecture_4.Exercicio_Restaurante.Service.*;
 

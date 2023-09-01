@@ -18,7 +18,7 @@ public class ListaLigada extends Lista {
             size++;
         } else {
             Elemento novoElemento = new Elemento(obj);
-            this.primeiro.setProximo(novoElemento);
+            this.ultimo.setProximo(novoElemento);
 
             this.ultimo = novoElemento;
             size++;
