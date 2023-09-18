@@ -1,7 +1,7 @@
 package Lecture_7;
 
-import Class_6.DiaInvalidoException;
-import Class_6.Semana_Enums;
+import Lecture_6.DiaInvalidoException;
+import Lecture_6.Semana_Enums;
 
 public class A_07_EX_01 {
 
