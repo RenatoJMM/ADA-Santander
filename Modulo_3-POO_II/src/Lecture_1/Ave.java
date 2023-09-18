@@ -6,4 +6,8 @@ public interface Ave {
 
     public void bicar();
 
+    default void latir() {
+
+    }
+
 }
