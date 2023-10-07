@@ -8,24 +8,24 @@ import java.util.stream.Collectors;
 import Brasileirao_Test.model.DadosGolsFutebol;
 import Brasileirao_Test.repository.DadosGolsFutebolRepository;
 
-public class JogadorComMaisGolsService {
+public class JogadorComMaisGolsPenaltisService {
 
     private static DadosGolsFutebolRepository dadosGolsFutebolRepository;
 
-    public JogadorComMaisGolsService(DadosGolsFutebolRepository dadosGols) {
+    public JogadorComMaisGolsPenaltisService(DadosGolsFutebolRepository dadosGols) {
         dadosGolsFutebolRepository = dadosGols;
     }
 
     public Map<String, Long> execute() {
         List<DadosGolsFutebol> dados = dadosGolsFutebolRepository.listaDadosGolsFutebol();
 
-        Map<String, Long> jogadorMaisGols = dados.stream()
-                .filter(gol -> gol.getTipoDeGol() == null || "Penalty".equals(gol.getTipoDeGol()))
+        Map<String, Long> jogadorMaisGols = dados.stream().filter(linha -> "Penalty".equals(linha.getTipoDeGol()))
                 .collect(Collectors.groupingBy(line -> line.getAtleta(), Collectors.counting()));
 
-        // System.out.println("Gols normais: "
-        // + Collections.max(jogadorMaisGols.entrySet(),
-        // Map.Entry.comparingByValue()).getKey() + ", num gols: "
+        // System.out.println(
+        // "Jogador Penalti: " + Collections.max(jogadorMaisGols.entrySet(),
+        // Map.Entry.comparingByValue()).getKey()
+        // + ", número de gols: "
         // + Collections.max(jogadorMaisGols.entrySet(),
         // Map.Entry.comparingByValue()).getValue());
 
@@ -34,6 +34,6 @@ public class JogadorComMaisGolsService {
                 Collections.max(jogadorMaisGols.entrySet(), Map.Entry.comparingByValue()).getValue());
 
         return result;
-    }
 
+    }
 }
