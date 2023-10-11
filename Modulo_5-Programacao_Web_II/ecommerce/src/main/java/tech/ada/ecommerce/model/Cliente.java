@@ -16,6 +16,7 @@ import java.util.Objects;
 //@AllArgsConstructor // CRIA CONSTRUTOR COM TODOS OS ARGUMENTOS
 @Entity
 public class Cliente implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) //CRIA OS VALORES AUTOMATICOS PARA MIM
     private Long id;
@@ -34,6 +35,12 @@ public class Cliente implements Serializable {
 
     @Column(nullable = false)
     private String senha;
+
+    @Column
+    private boolean ativo;
+
+    @Column
+    private Date dataDesativacao;
 
     @OneToMany(fetch = FetchType.LAZY)
     private List<Compra> listaCompras;
