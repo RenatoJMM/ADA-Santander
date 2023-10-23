@@ -24,6 +24,8 @@ public class ProgramacaoFuncional {
         System.out.println(calcular(num1, num2, operacaoLambdaSomar));
         System.out.println(calcular(num1, num2, operacaoLambdaSubtrair));
 
+        System.out.println(operacaoLambdaSomar.execute(3,5));
+
     }
 
     private static Integer calcular(Integer num1, Integer num2, Operacao operacao) {

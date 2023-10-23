@@ -3,12 +3,14 @@ package tech.ada.ecommerce.model;
 import jakarta.persistence.*;
 import tech.ada.ecommerce.model.enums.StatusEnum;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
-public class Compra {
+public class Compra  implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,11 +29,14 @@ public class Compra {
 
     private BigDecimal valorTotal;
 
-    @OneToMany//(fetch = FetchType.LAZY) NÃO BAIXAR TODOS OS ITEMSPRODUTOS QUANDO CHAMA AS COMPRAS
+    @OneToMany(fetch = FetchType.LAZY) //NÃO BAIXAR TODOS OS ITEMSPRODUTOS QUANDO CHAMA AS COMPRAS
     private List<ItemProduto> itens;
 
-    @Enumerated(value = EnumType.STRING) //Precisa colocar o EnumType para pegar o tipo do enum certo, se não pega
+    @Enumerated(value = EnumType.STRING) //Precisa colocar o EnumType para pegar o tipo do enum certo, se não pega a ordem do enum
     private StatusEnum status;
+
+//    @OneToOne
+//    private FormaPagamento formaPagamento;
 
 
 
@@ -108,5 +113,18 @@ public class Compra {
 
     public void setStatus(StatusEnum status) {
         this.status = status;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Compra compra = (Compra) o;
+        return Objects.equals(id, compra.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }

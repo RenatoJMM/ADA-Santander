@@ -17,6 +17,7 @@ public class ExempleTYpeMethodReference {
         Usuario usuario = new Usuario("Login", "senha");
 
         // CHAMANDO POR O METHOD FEITO POR LAMBDA
+
         System.out.println(retornaLogin.apply(usuario));
 
         Function<Usuario, String> retornaLogin2 = Usuario::getLogin;

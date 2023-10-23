@@ -3,8 +3,8 @@ package Lecture_6;
 public class ExemploConstructorMethodReference {
 
     public static void main(String[] args) {
-        String login = "";
-        String senha = "";
+        String login = "Teste";
+        String senha = "teste123";
 
         // PARENTESES VAZIOS PQ NÃO RECEBE NADA
         BaseDeDados baseDeDados = () -> new Usuario();
@@ -19,7 +19,8 @@ public class ExemploConstructorMethodReference {
         BaseDeDadosSegundoConst bDS = (l, s) -> new Usuario(l, s);
 
         BaseDeDadosSegundoConst bDSMR = Usuario::new;
-        System.out.println(bDSMR.getUsuario(login, senha));
+        System.out.println(bDSMR.getUsuario(login, senha).getLogin());
+        System.out.println(bDSMR.getUsuario(login, senha).getSenha());
 
     }
 

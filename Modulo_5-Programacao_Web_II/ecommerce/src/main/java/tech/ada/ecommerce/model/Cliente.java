@@ -14,14 +14,16 @@ import java.util.Objects;
 //@EqualsAndHashCode
 //@NoArgsConstructor // CONSTRUTOR VAZIO
 //@AllArgsConstructor // CRIA CONSTRUTOR COM TODOS OS ARGUMENTOS
-@Entity
+
+// @Table(name = "usuario") consigo mudar o nome por exemplo
+@Entity // Identifica como uma tabela
 public class Cliente implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) //CRIA OS VALORES AUTOMATICOS PARA MIM
     private Long id;
 
-    @Column(length = 50, nullable = false ) // nullable = false coluna não pode ser vazio
+    @Column(length = 50, nullable = false, name = "fullName") // nullable = false coluna não pode ser vazio
     private String nomeCompleto;
 
     @Column(nullable = false)
@@ -44,6 +46,7 @@ public class Cliente implements Serializable {
 
     @OneToMany(fetch = FetchType.LAZY)
     private List<Compra> listaCompras;
+
 
 
     public Cliente(){
@@ -96,6 +99,22 @@ public class Cliente implements Serializable {
 
     public void setSenha(String senha) {
         this.senha = senha;
+    }
+
+    public boolean isAtivo() {
+        return ativo;
+    }
+
+    public void setAtivo(boolean ativo) {
+        this.ativo = ativo;
+    }
+
+    public Date getDataDesativacao() {
+        return dataDesativacao;
+    }
+
+    public void setDataDesativacao(Date dataDesativacao) {
+        this.dataDesativacao = dataDesativacao;
     }
 
     public List<Compra> getListaCompras() {

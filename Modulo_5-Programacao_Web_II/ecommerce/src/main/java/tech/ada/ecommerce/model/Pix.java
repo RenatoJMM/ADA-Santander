@@ -1,6 +1,8 @@
 package tech.ada.ecommerce.model;
 
-public class Pix extends FormaPagamento{
+import java.io.Serializable;
+
+public class Pix extends FormaPagamento  implements Serializable {
 
     private String codigoPagamento;
 

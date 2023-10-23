@@ -2,6 +2,10 @@ package Lecture_6;
 
 public class Usuario {
 
+    private String senha;
+
+    private String login;
+
     public Usuario(String login, String senha) {
         this.login = login;
         this.senha = senha;
@@ -9,8 +13,6 @@ public class Usuario {
 
     public Usuario() {
     }
-
-    private String login;
 
     public String getLogin() {
         return login;
@@ -28,6 +30,6 @@ public class Usuario {
         this.senha = senha;
     }
 
-    private String senha;
+
 
 }

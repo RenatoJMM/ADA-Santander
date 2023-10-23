@@ -2,11 +2,12 @@ package tech.ada.ecommerce.model;
 
 import jakarta.persistence.*;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Objects;
 
 @Entity
-public class Produto {
+public class Produto  implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -10,16 +10,23 @@ public class Main {
 
         // imprimirUsuario(usuarioBuscado);
 
+
+
         // SEGUNDO TIPO DE VERIFICAÇÃO COM OPTIONAL
+
         // usuarioBuscado.ifPresentOrElse(usuario -> imprimirUsuario(usuario),
         // () -> System.out.println("User n encontrado"));
         // ;
+
+
 
         // TERCEIRO TIPO DE VERIFICAÇÃO COM OPTIONAL
 
         // Usuario user = usuarioBuscado.orElseThrow(() -> new RuntimeException("Usuário
         // não encontrado."));
         // imprimirUsuario(user);
+
+
 
         // CONSEGUIMOS USAR ALGUMAS FUNÇÕES (TIPO STREAM) NO OPTIONAL
 

@@ -8,7 +8,8 @@ public class BaseDeDados {
 
     List<Usuario> listUsuarios = new ArrayList<>();
     { // BLOCO DE INSTANCIA, ELE É INICIALIZADO APÓS DECLARAR AS VARIAVEIS DA CLASSE
-        listUsuarios = List.of(new Usuario("login", "senha"), new Usuario("login2", "senha2"));
+        listUsuarios = List.of(new Usuario("login", "senha"),
+                                new Usuario("login2", "senha2"));
     }
 
     public Optional<Usuario> getByName(String name) {

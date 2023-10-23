@@ -1,6 +1,7 @@
 package Lecture_6;
 
-public class ExampleMethodReference {
+
+public class ExampleStaticMethodReference {
 
     public static boolean verifica(Integer num) {
         return num % 2 == 0;
@@ -12,7 +13,7 @@ public class ExampleMethodReference {
 
         System.out.println(verificadorLambda.verificaSeEPar(6));
 
-        Verificador verificaMethodReference = ExampleMethodReference::verifica;
+        Verificador verificaMethodReference = ExampleStaticMethodReference::verifica;
         System.out.println(verificaMethodReference.verificaSeEPar(6));
 
     }
