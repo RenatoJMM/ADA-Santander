@@ -20,6 +20,14 @@ public class ProdutoService {
     this.produtoRepository = produtoRepository;
     }
 
+    public List<Produto> buscarTodosOsProdutos(){
+        return produtoRepository.findAll();
+    }
+
+    public Produto salvarProduto(Produto produto){
+        return produtoRepository.save(produto);
+    }
+
     public List<Produto> buscarProdutosPorPrecos(BigDecimal preco1, BigDecimal preco2){
         List<Produto> listaProdutos = produtoRepository.findByPrecoBetween(preco1, preco2);
 
@@ -36,4 +44,13 @@ public class ProdutoService {
 
         return listaProdutos;
     }
+
+    public List<Produto> buscarProdutoNomePreco(String nome,BigDecimal menorValor, BigDecimal maiorValor){
+        return produtoRepository.buscarProdutoNomePreco(nome,menorValor,maiorValor);
+    }
+
+    public void deletarProduto(Long id){
+        produtoRepository.deleteById(id);
+    }
+
 }

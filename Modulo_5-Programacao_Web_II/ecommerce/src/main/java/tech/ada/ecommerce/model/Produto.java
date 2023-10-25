@@ -28,21 +28,24 @@ public class Produto  implements Serializable {
     @Column(nullable = false)
     private int qtdEstoque;
 
-    public Produto(long id, String nome, String descricao, BigDecimal preco) {
+
+    public Produto(Long id, String nome, String descricao, String sku, BigDecimal preco, int qtdEstoque) {
         this.id = id;
         this.nome = nome;
         this.descricao = descricao;
+        this.sku = sku;
         this.preco = preco;
+        this.qtdEstoque = qtdEstoque;
     }
 
     public Produto() {
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -68,6 +71,22 @@ public class Produto  implements Serializable {
 
     public void setPreco(BigDecimal preco) {
         this.preco = preco;
+    }
+
+    public String getSku() {
+        return sku;
+    }
+
+    public void setSku(String sku) {
+        this.sku = sku;
+    }
+
+    public int getQtdEstoque() {
+        return qtdEstoque;
+    }
+
+    public void setQtdEstoque(int qtdEstoque) {
+        this.qtdEstoque = qtdEstoque;
     }
 
     @Override

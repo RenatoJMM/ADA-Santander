@@ -15,8 +15,6 @@ import java.util.List;
 @Repository
 public interface ProdutoRepository extends JpaRepository<Produto, Long> {
 
-    Produto findByDescricao(String descricao);
-
     Produto findBySku(String sku);
 
     Produto findByPreco(BigDecimal preco);
@@ -29,6 +27,9 @@ public interface ProdutoRepository extends JpaRepository<Produto, Long> {
 
     @Query(value = "UPDATE produto SET preco = :preco WHERE id = :id", nativeQuery = true)
     void atualizarPreco(@Param("preco") BigDecimal preco, @Param("id") Long id);
+
+    @Query("SELECT p FROM Produto p WHERE (p.nome ILIKE concat('%', :nome, '%')) AND (p.preco BETWEEN :menorValor AND :maiorValor)")
+    List<Produto> buscarProdutoNomePreco(@Param("nome") String nome, @Param("menorValor") BigDecimal menorValor, @Param("maiorValor") BigDecimal maiorValor);
 
     List<Produto> findByPrecoBetween(BigDecimal preco1, BigDecimal preco2);
     List<Produto> findByPrecoBetween(BigDecimal preco1, BigDecimal preco2, Pageable pageable); // UTILIZANDO O PAGEABLE ELE JÁ ENTENDE QUE VAI PAGINAR

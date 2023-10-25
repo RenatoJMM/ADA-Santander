@@ -35,8 +35,8 @@ public class Compra  implements Serializable {
     @Enumerated(value = EnumType.STRING) //Precisa colocar o EnumType para pegar o tipo do enum certo, se não pega a ordem do enum
     private StatusEnum status;
 
-//    @OneToOne
-//    private FormaPagamento formaPagamento;
+    @OneToOne
+    private FormaPagamento formaPagamento;
 
 
 
@@ -113,6 +113,14 @@ public class Compra  implements Serializable {
 
     public void setStatus(StatusEnum status) {
         this.status = status;
+    }
+
+    public FormaPagamento getFormaPagamento() {
+        return formaPagamento;
+    }
+
+    public void setFormaPagamento(FormaPagamento formaPagamento) {
+        this.formaPagamento = formaPagamento;
     }
 
     @Override

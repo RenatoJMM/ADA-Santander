@@ -47,7 +47,24 @@ public class Cliente implements Serializable {
     @OneToMany(fetch = FetchType.LAZY)
     private List<Compra> listaCompras;
 
+    public Cliente(Long id, String nomeCompleto, Date dataNascimento, String cpf, String email, String senha, boolean ativo) {
+        this.id = id;
+        this.nomeCompleto = nomeCompleto;
+        this.dataNascimento = dataNascimento;
+        this.cpf = cpf;
+        this.email = email;
+        this.senha = senha;
+        this.ativo = ativo;
+    }
 
+    public Cliente(String nomeCompleto, Date dataNascimento, String cpf, String email, String senha, boolean ativo) {
+        this.nomeCompleto = nomeCompleto;
+        this.dataNascimento = dataNascimento;
+        this.cpf = cpf;
+        this.email = email;
+        this.senha = senha;
+        this.ativo = ativo;
+    }
 
     public Cliente(){
 

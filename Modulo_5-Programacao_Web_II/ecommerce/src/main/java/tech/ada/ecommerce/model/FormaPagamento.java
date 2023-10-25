@@ -2,22 +2,24 @@ package tech.ada.ecommerce.model;
 
 import jakarta.persistence.*;
 
+import java.io.Serializable;
+
 //@MappedSuperclass //UTILIZADO PARA N CRIAR ESSA TABELA EM SI, SÓ AS FILHAS
-//@Inheritance(strategy = InheritanceType.JOINED) //TABLE_PER_CLASS OU SINGLE_TABLE
+//@Inheritance(strategy = InheritanceType.JOINED) //TABLE_PER_CLASS ( Não funciona @GeneratedValue(strategy = GenerationType.IDENTITY)) OU SINGLE_TABLE
+@Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-public class FormaPagamento {
+public abstract class FormaPagamento implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(nullable = false)
-    private String descricao;
 
-//    @OneToOne
-//    private Compra compra;
 
-    public FormaPagamento(Long id, String descricao) {
+    @OneToOne
+    private Compra compra;
+
+    public FormaPagamento(Long id) {
         this.id = id;
-        this.descricao = descricao;
     }
 
     public FormaPagamento() {
@@ -32,11 +34,11 @@ public class FormaPagamento {
         this.id = id;
     }
 
-    public String getDescricao() {
-        return descricao;
+    public Compra getCompra() {
+        return compra;
     }
 
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
+    public void setCompra(Compra compra) {
+        this.compra = compra;
     }
 }
