@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import tech.ada.ecommerce.dto.ClienteDTO;
 import tech.ada.ecommerce.model.Cliente;
+import tech.ada.ecommerce.model.Endereco;
 import tech.ada.ecommerce.service.ClienteService;
 
 import java.nio.file.Paths;
@@ -89,6 +90,13 @@ public class ClienteController {
     public ResponseEntity<Void> ativarDesativarCliente(@PathVariable("id") Long id, @RequestParam("ativo") Boolean ativo){
         clienteService.ativarDesativarCliente(ativo,id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    @PutMapping("/endereco")
+    public ResponseEntity<String> addEndereco(@RequestParam("id") Long id,
+                                            @RequestParam("idEnd") Long idEnd) {
+        clienteService.addEndereco(id,idEnd);
+        return new ResponseEntity<>("Endereco adicionado com Sucesso!", HttpStatus.OK);
     }
 
 //    @PutMapping("")

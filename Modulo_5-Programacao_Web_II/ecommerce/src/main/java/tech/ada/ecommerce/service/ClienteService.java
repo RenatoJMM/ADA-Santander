@@ -4,7 +4,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tech.ada.ecommerce.dto.ClienteDTO;
 import tech.ada.ecommerce.model.Cliente;
+import tech.ada.ecommerce.model.ClienteEndereco;
+import tech.ada.ecommerce.model.Endereco;
+import tech.ada.ecommerce.repository.ClienteEnderecoRepository;
 import tech.ada.ecommerce.repository.ClienteRepository;
+import tech.ada.ecommerce.repository.EnderecoRepository;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -19,11 +23,17 @@ public class ClienteService {
 
 //    @Autowired //FAZ A INJEÇÃO DA CLASSE REPOSITORY DENTRO DO SERVICE.
     private ClienteRepository clienteRepo;
+    private ClienteEnderecoRepository clienteEnderecoRepository;
+    private EnderecoRepository enderecoRepository;
 
     //MELHOR FAZER DA FORMA ABAIXO: POR QUESTÃO DE SEGURANÇA!!
     //Ou faz o Autowired ou instancia o ClienteRepository no construtor. Como no ex abaixo:
-    public ClienteService(ClienteRepository clienteRepo){
+    public ClienteService(ClienteRepository clienteRepo,
+                          ClienteEnderecoRepository clienteEnderecoRepository,
+                          EnderecoRepository enderecoRepository){
         this.clienteRepo = clienteRepo;
+        this.clienteEnderecoRepository = clienteEnderecoRepository;
+        this.enderecoRepository = enderecoRepository;
     }
 
     public List<Cliente> buscarTodosOsClientes(){
@@ -98,6 +108,20 @@ public class ClienteService {
     public List<Cliente> buscaPorNome(String nome){
         List<Cliente> clienteEncontrado = clienteRepo.findByNomeCompletoCustom(nome);
         return clienteEncontrado;
+    }
+
+    public void addEndereco(Long id, Long idEnd){
+        Optional<Endereco> optEnderececo = enderecoRepository.findById(idEnd);
+        Endereco endereco = optEnderececo.orElseThrow(() -> new RuntimeException("Não Existe endereco com esse id"));
+
+        Optional<Cliente> optCliente = clienteRepo.findById(id);
+        Cliente cliente = optCliente.orElseThrow(() -> new RuntimeException("Não Existe cliente com esse id"));
+
+        ClienteEndereco clienteEndereco = new ClienteEndereco();
+        clienteEndereco.setCliente(cliente);
+        clienteEndereco.setEndereco(endereco);
+
+        clienteEnderecoRepository.save(clienteEndereco);
     }
 
     private ClienteDTO criarCLienteDTO(Cliente cliente){

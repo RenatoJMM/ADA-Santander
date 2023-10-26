@@ -47,6 +47,9 @@ public class Cliente implements Serializable {
     @OneToMany(fetch = FetchType.LAZY)
     private List<Compra> listaCompras;
 
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "cliente") //COm o mappedBy, ele sabe que dentro do CLienteEndereco eu mapeei o cliente
+    private List<ClienteEndereco> enderecos;
+
     public Cliente(Long id, String nomeCompleto, Date dataNascimento, String cpf, String email, String senha, boolean ativo) {
         this.id = id;
         this.nomeCompleto = nomeCompleto;
@@ -140,6 +143,14 @@ public class Cliente implements Serializable {
 
     public void setListaCompras(List<Compra> listaCompras) {
         this.listaCompras = listaCompras;
+    }
+
+    public List<ClienteEndereco> getEnderecos() {
+        return enderecos;
+    }
+
+    public void setEnderecos(List<ClienteEndereco> enderecos) {
+        this.enderecos = enderecos;
     }
 
     @Override
