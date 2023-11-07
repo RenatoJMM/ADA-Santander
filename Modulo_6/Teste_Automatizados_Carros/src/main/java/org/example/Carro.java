@@ -1,5 +1,7 @@
 package org.example;
 
+import java.util.Objects;
+
 public class Carro {
 
     private String cor;
@@ -12,6 +14,13 @@ public class Carro {
     public Carro() {
         this.ligado = false;
         this.velocidadeInstantanea = 0;
+        this.velocidadeMaxima = 200;
+    }
+
+    public Carro(String cor,String marca, String modelo) {
+        this.cor = cor;
+        this.marca = marca;
+        this.modelo = modelo;
     }
 
     public void ligar() {
@@ -22,13 +31,22 @@ public class Carro {
         this.ligado = false;
     }
 
-    public void acelerar(Integer velocidade) {
-
-        this.velocidadeInstantanea += velocidade;
+    public void frear(Integer velocidade) {
+        if(0 > this.velocidadeInstantanea - velocidade){
+            this.velocidadeInstantanea = 0;
+        } else{
+            this.velocidadeInstantanea -= velocidade;
+        }
     }
 
-    public void frear(Integer velocidade) {
-        this.velocidadeInstantanea -= velocidade;
+    public void acelerar(Integer velocidade) {
+
+        if(this.velocidadeMaxima > this.velocidadeInstantanea + velocidade){
+            this.velocidadeInstantanea += velocidade;
+        } else {
+            this.velocidadeInstantanea = this.velocidadeMaxima;
+        }
+
     }
 
     public String getCor() {
@@ -77,5 +95,13 @@ public class Carro {
 
     public void setVelocidadeMaxima(Integer velocidadeMaxima) {
         this.velocidadeMaxima = velocidadeMaxima;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Carro carro = (Carro) o;
+        return Objects.equals(marca, carro.marca) && Objects.equals(modelo, carro.modelo);
     }
 }
