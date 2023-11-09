@@ -11,6 +11,8 @@ public class Carro {
     private Integer velocidadeInstantanea;
     private Integer velocidadeMaxima;
 
+    private Boolean trancadado;
+
     public Carro() {
         this.ligado = false;
         this.velocidadeInstantanea = 0;
@@ -21,6 +23,14 @@ public class Carro {
         this.cor = cor;
         this.marca = marca;
         this.modelo = modelo;
+    }
+
+    public void trancar(){
+
+        if(this.trancadado == true){
+            System.out.println("Ja esta trancado!");
+        }
+        trancadado = true;
     }
 
     public void ligar() {
@@ -39,8 +49,11 @@ public class Carro {
         }
     }
 
-    public void acelerar(Integer velocidade) {
+    public void acelerar(Integer velocidade) throws Exception {
 
+        if(velocidade < 0){
+            throw new Exception("A aceleração não aceita valores negativos!");
+        }
         if(this.velocidadeMaxima > this.velocidadeInstantanea + velocidade){
             this.velocidadeInstantanea += velocidade;
         } else {

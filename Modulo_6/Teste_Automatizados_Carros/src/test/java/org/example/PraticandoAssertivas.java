@@ -1,6 +1,9 @@
 package org.example;
 
 import org.example.Carro;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.CoreMatchers.not;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -93,6 +96,8 @@ public class PraticandoAssertivas {
         Integer b = 1;
 
         Assert.assertSame(a,b);
+
+        Assert.assertEquals(Math.PI, 3.141592,0.000001);
     }
 
     @Test
@@ -103,4 +108,18 @@ public class PraticandoAssertivas {
         Assert.assertNotSame(car1,car2);
     }
 
+
+    @Test
+    public void praticandoAssertThat(){
+        int a = 1;
+        int b = 1;
+
+//        Assert.assertThat(a, CoreMatchers.is(CoreMatchers.equalTo(b)));
+        Assert.assertThat(a, is(equalTo(b))); // Igual a fazer Assert.assetEquals(a,b)
+
+        String s1 = "Renato";
+        String s2 = "Julia";
+
+        Assert.assertThat(s1, is(not(s2)));
+    }
 }
