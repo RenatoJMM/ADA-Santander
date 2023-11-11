@@ -25,6 +25,16 @@ public class Carro {
         this.modelo = modelo;
     }
 
+    public Carro(String cor, String marca, String modelo, Boolean ligado, Integer velocidadeInstantanea, Integer velocidadeMaxima, Boolean trancadado) {
+        this.cor = cor;
+        this.marca = marca;
+        this.modelo = modelo;
+        this.ligado = ligado;
+        this.velocidadeInstantanea = velocidadeInstantanea;
+        this.velocidadeMaxima = velocidadeMaxima;
+        this.trancadado = trancadado;
+    }
+
     public void trancar(){
 
         if(this.trancadado == true){
