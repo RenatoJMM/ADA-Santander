@@ -96,4 +96,10 @@ public class CarroTest {
 
     }
 
+    // Teste Unitário (caixa branca) - Teste de Integração (integração de modulos) (caixa branca) - Teste E2E (End to End) (todo o ciclo de vida) (caixa preta)
+
+    // mais barato - - Mais caro
+    // mais rapido - - Mais lento
+    // menos integrado - - Mais integrado
+
 }
