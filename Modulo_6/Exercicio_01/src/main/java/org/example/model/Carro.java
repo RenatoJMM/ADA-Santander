@@ -13,26 +13,14 @@ public class Carro {
 
     private Boolean trancadado;
 
-    public Carro() {
+    public Carro(String cor, String marca, String modelo, Integer velocidadeMaxima) {
+        this.cor = cor;
+        this.marca = marca;
+        this.modelo = modelo;
         this.ligado = false;
         this.velocidadeInstantanea = 0;
-        this.velocidadeMaxima = 200;
-    }
-
-    public Carro(String cor,String marca, String modelo) {
-        this.cor = cor;
-        this.marca = marca;
-        this.modelo = modelo;
-    }
-
-    public Carro(String cor, String marca, String modelo, Boolean ligado, Integer velocidadeInstantanea, Integer velocidadeMaxima, Boolean trancadado) {
-        this.cor = cor;
-        this.marca = marca;
-        this.modelo = modelo;
-        this.ligado = ligado;
-        this.velocidadeInstantanea = velocidadeInstantanea;
         this.velocidadeMaxima = velocidadeMaxima;
-        this.trancadado = trancadado;
+        this.trancadado = true;
     }
 
     public void trancar(){
@@ -40,15 +28,23 @@ public class Carro {
         if(this.trancadado){
             System.out.println("Ja esta trancado!");
         }
-        trancadado = true;
+        setTrancadado(true);
+    }
+
+    public void destrancar(){
+
+        if(this.trancadado){
+            System.out.println("Ja esta destrancado!");
+        }
+        setTrancadado(false);
     }
 
     public void ligar() {
-        this.ligado = true;
+        setLigado(true);
     }
 
     public void desligar() {
-        this.ligado = false;
+        setLigado(false);
     }
 
     public void frear(Integer velocidade) {
@@ -67,9 +63,17 @@ public class Carro {
         if(this.velocidadeMaxima > this.velocidadeInstantanea + velocidade){
             this.velocidadeInstantanea += velocidade;
         } else {
-            this.velocidadeInstantanea = this.velocidadeMaxima;
+            setVelocidadeInstantanea(getVelocidadeMaxima());
         }
 
+    }
+
+    public void pintar(String cor) {
+        setCor(cor);
+    }
+
+    public void alterarVelocidadeMaximaDevidoAModificacaoDoCarro(Integer velocidadeMaxima) {
+        setVelocidadeMaxima(velocidadeMaxima);
     }
 
     public String getCor() {
@@ -120,6 +124,13 @@ public class Carro {
         this.velocidadeMaxima = velocidadeMaxima;
     }
 
+    public Boolean getTrancadado() {
+        return trancadado;
+    }
+
+    public void setTrancadado(Boolean trancadado) {
+        this.trancadado = trancadado;
+    }
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -127,4 +138,6 @@ public class Carro {
         Carro carro = (Carro) o;
         return Objects.equals(marca, carro.marca) && Objects.equals(modelo, carro.modelo);
     }
+
+
 }

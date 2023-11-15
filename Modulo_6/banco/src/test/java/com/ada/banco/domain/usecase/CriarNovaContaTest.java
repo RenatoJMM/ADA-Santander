@@ -14,7 +14,7 @@ public class CriarNovaContaTest {
     public void deveLancarUmaExceptionCasoUsuarioJaPossuaUmaConta() {
         //given
         ContaGateway contaGateway = new ContaGatewayDummyImpl(); // Responsavel por verificar se a conta existe
-        CriarNovaConta criarNovaConta = new CriarNovaConta(contaGateway);
+        CriarNovacaConta criarNovaConta = new CriarNovaConta(contaGateway);
 
 
         Conta conta = new Conta(12345L,0002L,1L, BigDecimal.ZERO, "Renato","123456789");
