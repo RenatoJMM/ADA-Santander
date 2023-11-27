@@ -31,12 +31,14 @@ public class RealizarTransferenciaTest {
         Transferencia transferencia = new Transferencia(1L,
                 new Account(1L,
                         1L,
-                        new Client("Julia","123", LocalDate.of(2005,04,29)),
-                        TipoDeConta.CORRENTE),
-                new Account(1L,
                         1L,
-                        new Client("Renato","123456", LocalDate.of(1998,7,25)),
-                        TipoDeConta.CORRENTE),
+                        TipoDeConta.CORRENTE,
+                        new Client("Julia","123", LocalDate.of(2005,04,29))),
+                new Account(2L,
+                        2L,
+                        1L,
+                        TipoDeConta.CORRENTE,
+                        new Client("Renato","123456", LocalDate.of(1998,7,25))),
                 BigDecimal.TEN);
 
         Mockito.when(transferenciaGateway.buscarPorId(transferencia.getId())).thenReturn(transferencia);
@@ -52,12 +54,14 @@ public class RealizarTransferenciaTest {
         Transferencia transferencia = new Transferencia(1L,
                 new Account(1L,
                         1L,
-                        new Client("Julia","123", LocalDate.of(2005,04,29)),
-                        TipoDeConta.CORRENTE),
-                new Account(2L,
                         1L,
-                        new Client("Renato","123456", LocalDate.of(1998,7,25)),
-                        TipoDeConta.CORRENTE),
+                        TipoDeConta.CORRENTE,
+                        new Client("Julia","123", LocalDate.of(2005,04,29))),
+                new Account(2L,
+                        2L,
+                        1L,
+                        TipoDeConta.CORRENTE,
+                        new Client("Renato","123456", LocalDate.of(1998,7,25))),
                 BigDecimal.valueOf(10000.00));
 
         Mockito.when(transferenciaGateway.buscarPorId(transferencia.getId())).thenReturn(null);
@@ -77,12 +81,14 @@ public class RealizarTransferenciaTest {
         Transferencia transferencia = new Transferencia(1L,
                 new Account(1L,
                         1L,
-                        new Client("Julia","123", LocalDate.of(2005,04,29)),
-                        TipoDeConta.CORRENTE),
-                new Account(2L,
                         1L,
-                        new Client("Renato","123456", LocalDate.of(1998,7,25)),
-                        TipoDeConta.CORRENTE),
+                        TipoDeConta.CORRENTE,
+                        new Client("Julia","123", LocalDate.of(2005,04,29))),
+                new Account(2L,
+                        2L,
+                        1L,
+                        TipoDeConta.CORRENTE,
+                        new Client("Renato","123456", LocalDate.of(1998,7,25))),
                 BigDecimal.valueOf(10000.00));
 
         Mockito.when(transferenciaGateway.buscarPorId(transferencia.getId())).thenReturn(null);

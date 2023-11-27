@@ -29,6 +29,23 @@ public class Account {
     @OneToOne(cascade = CascadeType.ALL) // PODE SER MERGE, MAS PRECISA CRIAR CLIENTE ANTES
     private Client titular;
 
+    public Account(Long id, Long agencia, Long digito, TipoDeConta tipoDeConta, Client titular) {
+        this.id = id;
+        this.agencia = agencia;
+        this.digito = digito;
+        this.tipoDeConta = tipoDeConta;
+        this.saldo = BigDecimal.ZERO;
+        this.titular = titular;
+    }
+
+    public Account(Long agencia, Long digito, TipoDeConta tipoDeConta, Client titular) {
+        this.agencia = agencia;
+        this.digito = digito;
+        this.tipoDeConta = tipoDeConta;
+        this.saldo = BigDecimal.ZERO;
+        this.titular = titular;
+    }
+
     public Account(Long id, Long agencia, Long digito, TipoDeConta tipoDeConta, BigDecimal saldo, Client titular) {
         this.id = id;
         this.agencia = agencia;
@@ -36,14 +53,6 @@ public class Account {
         this.tipoDeConta = tipoDeConta;
         this.saldo = saldo;
         this.titular = titular;
-    }
-
-    public Account(Long agencia, Long digito, Client titular, TipoDeConta tipoDeConta) {
-        this.agencia = agencia;
-        this.digito = digito;
-        this.saldo = BigDecimal.ZERO;
-        this.titular = titular;
-        this.tipoDeConta = tipoDeConta;
     }
 
     public Account() {

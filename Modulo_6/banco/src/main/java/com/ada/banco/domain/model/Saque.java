@@ -23,6 +23,12 @@ public class Saque {
         this.valor = valor;
     }
 
+    public Saque(Long id, Account account, BigDecimal valor) {
+        this.id = id;
+        this.account = account;
+        this.valor = valor;
+    }
+
     public Long getId() {
         return id;
     }

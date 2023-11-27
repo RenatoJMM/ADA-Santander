@@ -22,6 +22,12 @@ public class Transferencia {
         this.valor = valor;
     }
 
+    public Transferencia(Account remetente, Account destinatario, BigDecimal valor) {
+        this.remetente = remetente;
+        this.destinatario = destinatario;
+        this.valor = valor;
+    }
+
     public Transferencia() {
     }
 

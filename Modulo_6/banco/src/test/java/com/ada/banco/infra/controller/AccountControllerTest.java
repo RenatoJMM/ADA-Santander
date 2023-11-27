@@ -73,8 +73,8 @@ public class AccountControllerTest {
         String request = objectMapper.writeValueAsString(new Account(
                 2L,
                 1L,
-                new Client("Renato","123456", LocalDate.of(1998,7,25)),
-                TipoDeConta.CORRENTE)
+                TipoDeConta.CORRENTE,
+                new Client("Renato","123456", LocalDate.of(1998,7,25)))
         );
 
         //when
@@ -90,7 +90,12 @@ public class AccountControllerTest {
     @Test
     public void createAccountSucessfully_MustSaveAccount() throws Exception{ //teste de integração
         //Given
-        Account account = new Account(2L,1L, new Client("Renato","123456", LocalDate.of(1998,7,25)), TipoDeConta.CORRENTE);
+        Account account = new Account(
+                2L,
+                1L,
+                TipoDeConta.CORRENTE,
+                new Client("Renato","123456", LocalDate.of(1998,7,25))
+        );
 
         //When
         accountController.saveAccount(account);

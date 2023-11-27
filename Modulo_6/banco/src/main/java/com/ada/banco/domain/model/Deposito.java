@@ -23,6 +23,12 @@ public class Deposito {
         this.valor = valor;
     }
 
+    public Deposito(Long id, Account account, BigDecimal valor) {
+        this.id = id;
+        this.account = account;
+        this.valor = valor;
+    }
+
     public Long getId() {
         return id;
     }

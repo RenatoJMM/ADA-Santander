@@ -60,7 +60,11 @@ public class CreateNewAccountTest {
 
     @Test
     public void deveLancarUmaExceptionCasoUsuarioJaPossuaUmaConta() {
-        Account account = new Account(2L,1L, new Client("Renato","123456", LocalDate.of(1998,7,25)), TipoDeConta.CORRENTE);
+        Account account = new Account(
+                2L,
+                1L,
+                TipoDeConta.CORRENTE,
+                new Client("Renato","123456", LocalDate.of(1998,7,25)));
 
         when(accountGateway.findByAgencia(account.getAgencia())).thenReturn(account);
 
@@ -73,7 +77,11 @@ public class CreateNewAccountTest {
 
     @Test
     public void deveCriarUmaContaComSucesso() throws Exception {
-        Account account = new Account(2L,1L, new Client("Renato","123456", LocalDate.of(1998,7,25)), TipoDeConta.CORRENTE);
+        Account account = new Account(
+                2L,
+                1L,
+                TipoDeConta.CORRENTE,
+                new Client("Renato","123456", LocalDate.of(1998,7,25)));
 
         when(accountGateway.findByAgencia(account.getAgencia())).thenReturn(null);
         when(accountGateway.save(any())).thenReturn(account);
