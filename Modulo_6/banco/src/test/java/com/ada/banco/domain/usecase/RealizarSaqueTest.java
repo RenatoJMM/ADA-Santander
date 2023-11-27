@@ -1,10 +1,7 @@
 package com.ada.banco.domain.usecase;
 
 import com.ada.banco.domain.gateway.SaqueGateway;
-import com.ada.banco.domain.model.Account;
-import com.ada.banco.domain.model.Client;
-import com.ada.banco.domain.model.Saque;
-import com.ada.banco.domain.model.Transferencia;
+import com.ada.banco.domain.model.*;
 import com.ada.banco.domain.model.enums.TipoDeConta;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -26,20 +23,65 @@ public class RealizarSaqueTest {
     @InjectMocks
     RealizarSaque realizarSaque;
 
+    @Test
+    public void deveLancarUmaExceptionCasoJaExistaSaqueComMesmoId() {
+        Saque saque = new Saque(1L,
+                new Account(1L,
+                        1L,
+                        1L,
+                        TipoDeConta.CORRENTE,
+                        new Client("Julia","123", LocalDate.of(2005,04,29))),
+                BigDecimal.TEN);
+
+        Mockito.when(saqueGateway.findById(saque.getId())).thenReturn(saque);
+
+        Throwable throwable = Assertions.assertThrows(Exception.class, ()-> realizarSaque.execute(saque));
+
+        Assertions.assertEquals("Erro na transação! Saque já realizado!",throwable.getMessage());
+
+    }
+
+    @Test
+    public void deveLancarExceptionCasoNaoHajaSaldoSuficienteNaConta() throws Exception {
+        Saque saque = new Saque(1L,
+                new Account(1L,
+                        1L,
+                        1L,
+                        TipoDeConta.CORRENTE,
+                        new Client("Julia","123", LocalDate.of(2005,04,29))),
+                BigDecimal.TEN
+        );
+
+        Mockito.when(saqueGateway.findById(saque.getId())).thenReturn(null);
+        Mockito.when(saqueGateway.checarSeTemSaldo(saque)).thenReturn(false);
+
+        Throwable throwable = Assertions.assertThrows(Exception.class, ()-> realizarSaque.execute(saque));
+
+        Assertions.assertEquals("Saldo insuficiente para saque!",throwable.getMessage());
+
+    }
+
+
 //    @Test
-//    public void deveLancarUmaExceptionCasoJaExistaSaqueComMesmoId() {
+//    public void deveRealizarDepositoCorretamente() throws Exception {
 //        Saque saque = new Saque(1L,
 //                new Account(1L,
 //                        1L,
-//                        new Client("Julia","123", LocalDate.of(2005,04,29)),
-//                        TipoDeConta.CORRENTE),
-//                BigDecimal.TEN);
+//                        1L,
+//                        TipoDeConta.CORRENTE,
+//                        new Client("Julia","123", LocalDate.of(2005,04,29))),
+//                BigDecimal.TEN
+//        );
 //
-//        Mockito.when(transferenciaGateway.buscarPorId(transferencia.getId())).thenReturn(transferencia);
+//        Mockito.when(depositoGateway.findById(deposito.getId())).thenReturn(null);
+//        Mockito.when(depositoGateway.criarDeposito(deposito)).thenReturn(deposito);
 //
-//        Throwable throwable = Assertions.assertThrows(Exception.class, ()-> realizarTransferencia.execute(transferencia));
+//        Deposito novoDeposito = realizarDeposito.execute(deposito);
 //
-//        Assertions.assertEquals("Erro na transação! Transferência já realizada!",throwable.getMessage());
-//
+//        Assertions.assertAll(
+//                ()-> Assertions.assertEquals(1L,novoDeposito.getId()),
+//                ()-> Assertions.assertEquals("Julia",novoDeposito.getAccount().getTitular().getFullName()),
+//                ()-> Assertions.assertEquals(BigDecimal.TEN,novoDeposito.getValor())
+//        );
 //    }
 }
