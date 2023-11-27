@@ -29,7 +29,9 @@ public class TransferenciaGatewayDatabase implements TransferenciaGateway {
     }
 
     @Override
-    public BigDecimal retornarSaldoRemetente(Transferencia transferencia) {
-        return transferencia.getRemetente().getSaldo();
+    public Boolean checarSeTemSaldo(Transferencia transferencia) {
+        return transferencia.getRemetente().getSaldo().compareTo(transferencia.getValor()) >= 0;
     }
+
+
 }

@@ -16,7 +16,7 @@ public class Account {
     @Column(unique = true,nullable = false)
     private Long agencia;
 
-    @Column(unique = true,nullable = false)
+    @Column(nullable = false)
     private Long digito;
 
     @Enumerated(value = EnumType.STRING)
@@ -25,9 +25,9 @@ public class Account {
     @Column
     private BigDecimal saldo;
 
-    // Usuario / Titular
     @OneToOne(cascade = CascadeType.ALL) // PODE SER MERGE, MAS PRECISA CRIAR CLIENTE ANTES
     private Client titular;
+
 
     public Account(Long id, Long agencia, Long digito, TipoDeConta tipoDeConta, Client titular) {
         this.id = id;

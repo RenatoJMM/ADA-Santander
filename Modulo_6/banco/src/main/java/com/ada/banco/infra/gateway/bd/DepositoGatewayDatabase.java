@@ -2,9 +2,11 @@ package com.ada.banco.infra.gateway.bd;
 
 import com.ada.banco.domain.gateway.DepositoGateway;
 import com.ada.banco.domain.model.Deposito;
+import org.springframework.stereotype.Component;
 
 import java.util.Optional;
 
+@Component
 public class DepositoGatewayDatabase implements DepositoGateway {
 
     DepositoRepository depositoRepository;
@@ -16,7 +18,7 @@ public class DepositoGatewayDatabase implements DepositoGateway {
     @Override
     public Deposito findById(Long id) {
         Optional<Deposito> optionalDeposito = depositoRepository.findById(id);
-        return null;
+        return optionalDeposito.orElse(null);
     }
 
     @Override

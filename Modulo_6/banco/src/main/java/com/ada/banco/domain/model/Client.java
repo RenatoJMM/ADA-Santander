@@ -23,7 +23,7 @@ public class Client {
     @OneToOne
     private Account conta;
 
-    public Client(Long id, String fullName, String cpf, LocalDate dataNascimento, Account conta) {
+    public Client(Long id, String fullName, String cpf, LocalDate dataNascimento) {
         this.id = id;
         this.fullName = fullName;
         this.cpf = cpf;

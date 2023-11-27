@@ -30,25 +30,6 @@ public class RealizarDepositoTest {
     RealizarDeposito realizarDeposito;
 
     @Test
-    public void deveLancarUmaExceptionCasoJaExistaDepositoComMesmoId() {
-        Deposito deposito = new Deposito(1L,
-                new Account(1L,
-                        1L,
-                        1L,
-                        TipoDeConta.CORRENTE,
-                        new Client("Julia","123", LocalDate.of(2005,04,29))),
-                BigDecimal.TEN
-        );
-
-        Mockito.when(depositoGateway.findById(deposito.getId())).thenReturn(deposito);
-
-        Throwable throwable = Assertions.assertThrows(Exception.class, ()-> realizarDeposito.execute(deposito));
-
-        Assertions.assertEquals("Erro na transação! Deposito já realizado!",throwable.getMessage());
-
-    }
-
-    @Test
     public void deveRealizarDepositoCorretamente() throws Exception {
         Deposito deposito = new Deposito(1L,
                 new Account(1L,
@@ -70,4 +51,5 @@ public class RealizarDepositoTest {
                 ()-> Assertions.assertEquals(BigDecimal.TEN,novoDeposito.getValor())
         );
     }
+
 }

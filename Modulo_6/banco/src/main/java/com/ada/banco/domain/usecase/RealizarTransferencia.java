@@ -4,7 +4,9 @@ import com.ada.banco.domain.gateway.AccountGateway;
 import com.ada.banco.domain.gateway.TransferenciaGateway;
 import com.ada.banco.domain.model.Account;
 import com.ada.banco.domain.model.Transferencia;
+import org.springframework.stereotype.Component;
 
+@Component
 public class RealizarTransferencia {
 
     TransferenciaGateway transferenciaGateway;
@@ -18,11 +20,7 @@ public class RealizarTransferencia {
 
     public Transferencia execute(Transferencia transferencia) throws Exception {
 
-        if(transferenciaGateway.buscarPorId(transferencia.getId()) != null){
-            throw new Exception("Erro na transação! Transferência já realizada!");
-        }
-
-        if(transferenciaGateway.retornarSaldoRemetente(transferencia).compareTo(transferencia.getValor()) < 0){
+        if(!transferenciaGateway.checarSeTemSaldo(transferencia)){
             throw new Exception("Saldo do Remetente Insuficiente!");
         }
 

@@ -2,9 +2,10 @@ package com.ada.banco.infra.gateway.bd;
 
 import com.ada.banco.domain.gateway.SaqueGateway;
 import com.ada.banco.domain.model.Saque;
+import org.springframework.stereotype.Component;
 
 import java.util.Optional;
-
+@Component
 public class SaqueGatewayDatabase implements SaqueGateway {
 
     SaqueRepository saqueRepository;

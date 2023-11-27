@@ -26,30 +26,6 @@ public class RealizarTransferenciaTest {
     RealizarTransferencia realizarTransferencia;
 
     @Test
-    public void deveLancarUmaExceptionCasoJaExistaTransferenciaComMesmoId() throws Exception {
-
-        Transferencia transferencia = new Transferencia(1L,
-                new Account(1L,
-                        1L,
-                        1L,
-                        TipoDeConta.CORRENTE,
-                        new Client("Julia","123", LocalDate.of(2005,04,29))),
-                new Account(2L,
-                        2L,
-                        1L,
-                        TipoDeConta.CORRENTE,
-                        new Client("Renato","123456", LocalDate.of(1998,7,25))),
-                BigDecimal.TEN);
-
-        Mockito.when(transferenciaGateway.buscarPorId(transferencia.getId())).thenReturn(transferencia);
-
-        Throwable throwable = Assertions.assertThrows(Exception.class, ()-> realizarTransferencia.execute(transferencia));
-
-        Assertions.assertEquals("Erro na transação! Transferência já realizada!",throwable.getMessage());
-
-    }
-
-    @Test
     public void deveRealizarTransferenciaComSucesso() throws Exception {
         Transferencia transferencia = new Transferencia(1L,
                 new Account(1L,
@@ -65,6 +41,7 @@ public class RealizarTransferenciaTest {
                 BigDecimal.valueOf(10000.00));
 
         Mockito.when(transferenciaGateway.buscarPorId(transferencia.getId())).thenReturn(null);
+        Mockito.when(transferenciaGateway.checarSeTemSaldo(transferencia)).thenReturn(true);
         Mockito.when(transferenciaGateway.criarTransferencia(transferencia)).thenReturn(transferencia);
 
         Transferencia novaTransferencia = realizarTransferencia.execute(transferencia);
@@ -92,7 +69,7 @@ public class RealizarTransferenciaTest {
                 BigDecimal.valueOf(10000.00));
 
         Mockito.when(transferenciaGateway.buscarPorId(transferencia.getId())).thenReturn(null);
-        Mockito.when(transferenciaGateway.retornarSaldoRemetente(transferencia)).thenReturn(BigDecimal.ZERO);
+        Mockito.when(transferenciaGateway.checarSeTemSaldo(transferencia)).thenReturn(false);
 
         Throwable throwable = Assertions.assertThrows(Exception.class, ()-> realizarTransferencia.execute(transferencia));
 

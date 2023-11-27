@@ -12,5 +12,5 @@ public interface TransferenciaGateway {
 
     Transferencia criarTransferencia(Transferencia transferencia);
 
-    BigDecimal retornarSaldoRemetente(Transferencia transferencia);
+    Boolean checarSeTemSaldo(Transferencia transferencia);
 }

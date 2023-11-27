@@ -6,7 +6,9 @@ import com.ada.banco.domain.gateway.SaqueGateway;
 import com.ada.banco.domain.model.Account;
 import com.ada.banco.domain.model.Deposito;
 import com.ada.banco.domain.model.Saque;
+import org.springframework.stereotype.Component;
 
+@Component
 public class RealizarSaque {
 
     SaqueGateway saqueGateway;
@@ -19,10 +21,6 @@ public class RealizarSaque {
     }
 
     public Saque execute(Saque saque) throws Exception {
-
-        if(saqueGateway.findById(saque.getId()) != null){
-            throw new Exception("Erro na transação! Saque já realizado!");
-        }
 
         if(!saqueGateway.checarSeTemSaldo(saque)){
             throw new Exception("Saldo insuficiente para saque!");

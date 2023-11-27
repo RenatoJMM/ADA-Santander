@@ -5,7 +5,9 @@ import com.ada.banco.domain.gateway.DepositoGateway;
 import com.ada.banco.domain.model.Account;
 import com.ada.banco.domain.model.Deposito;
 import com.ada.banco.domain.model.Transferencia;
+import org.springframework.stereotype.Component;
 
+@Component
 public class RealizarDeposito {
 
     DepositoGateway depositoGateway;
@@ -17,10 +19,6 @@ public class RealizarDeposito {
     }
 
     public Deposito execute(Deposito deposito) throws Exception {
-
-        if(depositoGateway.findById(deposito.getId()) != null){
-            throw new Exception("Erro na transação! Deposito já realizado!");
-        }
 
         Deposito novoDeposito = depositoGateway.criarDeposito(deposito);
 
