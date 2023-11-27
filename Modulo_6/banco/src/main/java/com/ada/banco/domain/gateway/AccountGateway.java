@@ -6,5 +6,6 @@ public interface AccountGateway { // Aqui vai ser só a interface
 
     Account findByAgencia (Long agencia);
     Account save(Account account);
+
 }
 

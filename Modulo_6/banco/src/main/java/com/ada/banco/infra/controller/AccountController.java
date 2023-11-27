@@ -34,8 +34,4 @@ public class AccountController {
 
     }
 
-//    @GetMapping("")
-//    public List<Client> findAll(){
-//        return ac
-//    }
 }
