@@ -1,7 +1,6 @@
 package com.ada.banco.dummy;
 
 import com.ada.banco.domain.gateway.TransferenciaGateway;
-import com.ada.banco.domain.model.Conta;
 import com.ada.banco.domain.model.Transferencia;
 
 import java.math.BigDecimal;

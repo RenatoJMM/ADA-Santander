@@ -1,10 +1,7 @@
 package com.ada.banco.domain.usecase;
 
 import com.ada.banco.domain.gateway.TransferenciaGateway;
-import com.ada.banco.domain.model.Conta;
 import com.ada.banco.domain.model.Transferencia;
-
-import java.math.BigDecimal;
 
 public class RealizarTransferencia {
 

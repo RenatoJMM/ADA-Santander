@@ -4,7 +4,7 @@ import com.ada.banco.domain.model.Client;
 
 public interface ClientGateway {
 
-    void buscarPorCPF();
+    Client findByCpf(String cpf);
 
-    void cadastrarCLiente(Client cliente);
+    Client saveClient(Client client);
 }

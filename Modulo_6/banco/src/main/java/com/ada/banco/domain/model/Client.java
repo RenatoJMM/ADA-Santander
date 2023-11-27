@@ -2,6 +2,7 @@ package com.ada.banco.domain.model;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
@@ -17,12 +18,12 @@ public class Client {
     private String cpf;
 
     @Column(nullable = false)
-    private Date dataNascimento;
+    private LocalDate dataNascimento;
 
     @OneToOne
     private Account conta;
 
-    public Client(String fullName, String cpf, Date dataNascimento) {
+    public Client(String fullName, String cpf, LocalDate dataNascimento) {
         this.fullName = fullName;
         this.cpf = cpf;
         this.dataNascimento = dataNascimento;
@@ -55,11 +56,11 @@ public class Client {
         this.cpf = cpf;
     }
 
-    public Date getDataNascimento() {
+    public LocalDate getDataNascimento() {
         return dataNascimento;
     }
 
-    public void setDataNascimento(Date dataNascimento) {
+    public void setDataNascimento(LocalDate dataNascimento) {
         this.dataNascimento = dataNascimento;
     }
 

@@ -8,27 +8,24 @@ import org.springframework.stereotype.Component;
 @Component
 public class CreateNewAccount {
 
-    private AccountGateway contaGateway;
+    private AccountGateway accountGateway;
 
     private EmailGateway emailGateway;
 
-    public CreateNewAccount(AccountGateway contaGateway, EmailGateway emailGateway) {
-        this.contaGateway = contaGateway;
+    CreateNewAccount(AccountGateway accountGateway, EmailGateway emailGateway) {
+        this.accountGateway = accountGateway;
         this.emailGateway = emailGateway;
     }
 
-    public Account execute(Account conta) throws Exception {
-        //validar se o usuário possui uma conta
-        if(contaGateway.buscarPorCPF(conta.getCpf()) != null) {
-            throw new Exception("Usuario já possui uma conta!");
+    public Account execute(Account account) throws Exception {
+
+        if(accountGateway.findByAgencia(account.getAgencia()) != null) {
+            throw new Exception("Account already Registered!");
         }
-        // se possuir vamos lançar exception
 
-        Account novaConta = contaGateway.salvar(conta);
-        // se não criar uma nova conta e return true
+        Account newAccount = accountGateway.save(account);
+        emailGateway.send(newAccount.getTitular().getCpf());
 
-        emailGateway.send(novaConta.getCpf());
-
-        return novaConta;
+        return newAccount;
     }
 }
