@@ -1,22 +1,45 @@
 package com.ada.banco.domain.usecase;
 
 import com.ada.banco.domain.gateway.TransferenciaGateway;
+import com.ada.banco.domain.model.Account;
+import com.ada.banco.domain.model.Client;
 import com.ada.banco.domain.model.Transferencia;
-import com.ada.banco.dummy.TransferenciaGatewayDummyImpl;
+import com.ada.banco.domain.model.enums.TipoDeConta;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 
+@ExtendWith(MockitoExtension.class)
 public class RealizarTransferenciaTest {
+
+    @Mock
+    TransferenciaGateway transferenciaGateway;
+
+    @InjectMocks
+    RealizarTransferencia realizarTransferencia;
 
     @Test
     public void deveLancarUmaExceptionCasoJaExistaTransferenciaComMesmoId() throws Exception {
-        TransferenciaGateway transferenciaGateway = new TransferenciaGatewayDummyImpl();
 
-        RealizarTransferencia realizarTransferencia = new RealizarTransferencia(transferenciaGateway);
+        Transferencia transferencia = new Transferencia(1L,
+                new Account(1L,
+                        1L,
+                        new Client("Julia","123", LocalDate.of(2005,04,29)),
+                        TipoDeConta.CORRENTE),
+                new Account(1L,
+                        1L,
+                        new Client("Renato","123456", LocalDate.of(1998,7,25)),
+                        TipoDeConta.CORRENTE),
+                BigDecimal.TEN);
 
-        Transferencia transferencia = new Transferencia(1L,"Julia","Renato", BigDecimal.TEN);
+        Mockito.when(transferenciaGateway.buscarPorId(transferencia.getId())).thenReturn(transferencia);
 
         Throwable throwable = Assertions.assertThrows(Exception.class, ()-> realizarTransferencia.execute(transferencia));
 
@@ -26,18 +49,47 @@ public class RealizarTransferenciaTest {
 
     @Test
     public void deveRealizarTransferenciaComSucesso() throws Exception {
-        TransferenciaGateway transferenciaGateway = new TransferenciaGatewayDummyImpl();
+        Transferencia transferencia = new Transferencia(1L,
+                new Account(1L,
+                        1L,
+                        new Client("Julia","123", LocalDate.of(2005,04,29)),
+                        TipoDeConta.CORRENTE),
+                new Account(2L,
+                        1L,
+                        new Client("Renato","123456", LocalDate.of(1998,7,25)),
+                        TipoDeConta.CORRENTE),
+                BigDecimal.valueOf(10000.00));
 
-        RealizarTransferencia realizarTransferencia = new RealizarTransferencia(transferenciaGateway);
-
-        Transferencia transferencia = new Transferencia(2L,"Julia","Renato", BigDecimal.valueOf(10000.00));
+        Mockito.when(transferenciaGateway.buscarPorId(transferencia.getId())).thenReturn(null);
+        Mockito.when(transferenciaGateway.criarTransferencia(transferencia)).thenReturn(transferencia);
 
         Transferencia novaTransferencia = realizarTransferencia.execute(transferencia);
 
         Assertions.assertAll(
-                () -> Assertions.assertEquals("Julia",novaTransferencia.getRemetente()),
-                () -> Assertions.assertEquals("Renato",novaTransferencia.getDestinatario()),
+                () -> Assertions.assertEquals("Julia",novaTransferencia.getRemetente().getTitular().getFullName()),
+                () -> Assertions.assertEquals("Renato",novaTransferencia.getDestinatario().getTitular().getFullName()),
                 () -> Assertions.assertEquals(BigDecimal.valueOf(10000.00),novaTransferencia.getValor())
         );
+    }
+
+    @Test
+    public void deveDarErroAoTentarFazerTransferenciaSemSaldo() throws Exception {
+        Transferencia transferencia = new Transferencia(1L,
+                new Account(1L,
+                        1L,
+                        new Client("Julia","123", LocalDate.of(2005,04,29)),
+                        TipoDeConta.CORRENTE),
+                new Account(2L,
+                        1L,
+                        new Client("Renato","123456", LocalDate.of(1998,7,25)),
+                        TipoDeConta.CORRENTE),
+                BigDecimal.valueOf(10000.00));
+
+        Mockito.when(transferenciaGateway.buscarPorId(transferencia.getId())).thenReturn(null);
+        Mockito.when(transferenciaGateway.retornarSaldoRemetente(transferencia)).thenReturn(BigDecimal.ZERO);
+
+        Throwable throwable = Assertions.assertThrows(Exception.class, ()-> realizarTransferencia.execute(transferencia));
+
+        Assertions.assertEquals("Saldo do Remetente Insuficiente!",throwable.getMessage());
     }
 }

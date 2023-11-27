@@ -17,6 +17,10 @@ public class RealizarTransferencia {
             throw new Exception("Erro na transação! Transferência já realizada!");
         }
 
+        if(transferenciaGateway.retornarSaldoRemetente(transferencia).compareTo(transferencia.getValor()) < 0){
+            throw new Exception("Saldo do Remetente Insuficiente!");
+        }
+
         Transferencia novaTransferencia = transferenciaGateway.criarTransferencia(transferencia);
         return novaTransferencia;
     }

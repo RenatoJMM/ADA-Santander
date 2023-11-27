@@ -1,23 +1,30 @@
 package com.ada.banco.domain.model;
 
+import jakarta.persistence.*;
+
 import java.math.BigDecimal;
-
+@Entity
 public class Transferencia {
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    private String remetente;
-
-    private String destinatario;
-
+    @OneToOne
+    private Account remetente;
+    @OneToOne
+    private Account destinatario;
+    @Column
     private BigDecimal valor;
 
-    public Transferencia(Long id, String remetente, String destinatario, BigDecimal valor) {
+    public Transferencia(Long id, Account remetente, Account destinatario, BigDecimal valor) {
         this.id = id;
         this.remetente = remetente;
         this.destinatario = destinatario;
         this.valor = valor;
     }
+
+    public Transferencia() {
+    }
+
     public Long getId() {
         return id;
     }
@@ -26,19 +33,19 @@ public class Transferencia {
         this.id = id;
     }
 
-    public String getRemetente() {
+    public Account getRemetente() {
         return remetente;
     }
 
-    public void setRemetente(String remetente) {
+    public void setRemetente(Account remetente) {
         this.remetente = remetente;
     }
 
-    public String getDestinatario() {
+    public Account getDestinatario() {
         return destinatario;
     }
 
-    public void setDestinatario(String destinatario) {
+    public void setDestinatario(Account destinatario) {
         this.destinatario = destinatario;
     }
 
