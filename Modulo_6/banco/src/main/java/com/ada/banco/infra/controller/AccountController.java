@@ -4,6 +4,7 @@ import com.ada.banco.domain.gateway.ClientGateway;
 import com.ada.banco.domain.model.Account;
 import com.ada.banco.domain.model.Client;
 import com.ada.banco.domain.model.Deposito;
+import com.ada.banco.domain.model.Saque;
 import com.ada.banco.domain.usecase.CreateNewAccount;
 import com.ada.banco.domain.usecase.RealizarDeposito;
 import com.ada.banco.domain.usecase.RealizarSaque;
@@ -75,6 +76,26 @@ public class AccountController {
         }
 
         return ResponseEntity.status(HttpStatus.CREATED).body(newDeposito);
+
+    }
+
+    @PostMapping("/saque")
+    public ResponseEntity criarSaque(@RequestParam("id") Long id,
+                                        @RequestParam("valor") Double valor) throws Exception{
+
+        Optional<Account> account = accountRepository.findById(id);
+
+        Saque saque = new Saque(account.orElse(null),BigDecimal.valueOf(valor));
+
+        Saque newSaque;
+
+        try{
+            newSaque = realizarSaque.execute(saque);
+        } catch( Exception e){
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+
+        return ResponseEntity.status(HttpStatus.CREATED).body(newSaque);
 
     }
 

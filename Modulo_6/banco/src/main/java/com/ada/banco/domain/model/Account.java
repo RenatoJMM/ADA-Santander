@@ -25,6 +25,7 @@ public class Account {
     @Column
     private BigDecimal saldo;
 
+
     @OneToOne(cascade = CascadeType.ALL) // PODE SER MERGE, MAS PRECISA CRIAR CLIENTE ANTES
     private Client titular;
 

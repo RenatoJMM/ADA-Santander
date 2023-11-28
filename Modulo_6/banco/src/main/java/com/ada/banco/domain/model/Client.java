@@ -12,12 +12,12 @@ public class Client {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(length = 50, nullable = false)
+    @Column(length = 50)
     private String fullName;
-    @Column(unique = true, nullable = false)
+    @Column(unique = true)
     private String cpf;
 
-    @Column(nullable = false)
+    @Column
     private LocalDate dataNascimento;
 
     @OneToOne
@@ -28,7 +28,6 @@ public class Client {
         this.fullName = fullName;
         this.cpf = cpf;
         this.dataNascimento = dataNascimento;
-        this.conta = conta;
     }
 
     public Client(String fullName, String cpf, LocalDate dataNascimento) {
